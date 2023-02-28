@@ -1,5 +1,6 @@
 import Foundation
 import SwiftMessages
+import UIKit
 
 extension String {
     var localized: String {

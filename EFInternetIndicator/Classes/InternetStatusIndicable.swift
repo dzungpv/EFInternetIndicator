@@ -1,5 +1,6 @@
 import Foundation
 import SwiftMessages
+import UIKit
 
 public protocol InternetStatusIndicable : class {
     var internetConnectionIndicator:InternetViewIndicator? { get set }
