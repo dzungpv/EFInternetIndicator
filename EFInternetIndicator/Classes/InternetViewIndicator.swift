@@ -53,7 +53,7 @@ public class InternetViewIndicator {
         var statusConfig = SwiftMessages.defaultConfig
         statusConfig.duration = .forever
         #if swift(>=4.2)
-        statusConfig.presentationContext = .window(windowLevel: UIWindow.Level.statusBar.rawValue)
+        statusConfig.presentationContext = .window(windowLevel: UIWindow.Level(rawValue: UIWindow.Level.statusBar.rawValue))
         #else
         statusConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         #endif
@@ -61,7 +61,9 @@ public class InternetViewIndicator {
         
         if reachability.connection != .none {
             SwiftMessages.hide()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "internetStatus"), object: "ON")
         } else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "internetStatus"), object: "OFF")
             SwiftMessages.show(config: statusConfig, view: status)
         }
     }
